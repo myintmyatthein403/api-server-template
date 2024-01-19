@@ -1,0 +1,23 @@
+POST {{apiUrl}}/test
+Content-Type: application/json
+
+{
+  "name": "testing01"
+}
+
+######################################
+GET {{apiUrl}}/test
+
+#########################################
+GET {{apiUrl}}/test/65aaa90fea23a18bea127447
+
+#########################################
+PUT {{apiUrl}}/test/65aaa90fea23a18bea127447
+Content-Type: application/json
+
+{
+  "name": "testing01Updated"
+}
+
+############################################
+DELETE {{apiUrl}}/test/65aaa90fea23a18bea127447
