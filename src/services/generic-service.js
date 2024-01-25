@@ -6,7 +6,7 @@ const create = async(model, data) => {
 }
 
 const getAll = async (model, query) => {
-    const { filters = {}, populate = '', sort = '', limit = '10', page = '1' } = query;
+    const { filters = {}, populate = '', select = '', sort = '', limit = '10', page = '1' } = query;
 
     const findQuery = applyFilters(filters);
     const populateQuery = applyPopulation(model, populate);
@@ -14,6 +14,7 @@ const getAll = async (model, query) => {
     const { skip, limit: pageSize } = applyPagination(page, limit);
 
     const items = await model.find(findQuery)
+        .select(select)
         .populate(populateQuery)
         .sort(sortQuery)
         .skip(skip)
@@ -28,14 +29,18 @@ const getAll = async (model, query) => {
     return { items, totalItems };
 };
 
-const getOneItem = async(model, itemId, populateFields = '') => {
-    const item = await model.findById(itemId).populate(populateFields);
-    if(!item) {
-        throw new Error('Item not found')
+const getOneItem = async(model, itemId, populateFields = '', select = '') => {
+    const item = await model.findById(itemId)
+        .select(select)
+        .populate(populateFields);
+
+    if (!item) {
+        throw new Error('Item not found');
     }
 
     return item;
-}
+};
+
 
 const updateItem = async(model, itemId, updateData) => {
     const updatedItem =  await model.findByIdAndUpdate(itemId, updateData, {new: true});
