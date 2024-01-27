@@ -1,0 +1,14 @@
+#CREATE Users
+POST {{apiUrl}}/users
+Content-Type: application/json
+
+{
+  "username": "myintmyatthein",
+  "email": "myintmyatthein403@gmail.com",
+  "password": "Alpine1221"
+}
+
+############################
+# GET Users
+GET {{apiUrl}}/users
+Authorization: Bearer {{jwt}}

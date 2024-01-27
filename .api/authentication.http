@@ -1,0 +1,18 @@
+# Register
+POST {{apiUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "myintmyatthein",
+  "email": "myintmyatthein403@gmail.com",
+  "password": "Alpine1221"
+}
+
+##############################
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "identifier": "myintmyatthein",
+  "password": "Alpine1221"
+}
